@@ -18,3 +18,5 @@ pi=3.14
 print str(pi)
 
 print "Monty Python"
+print "Spam " + "and " + "eggs"
+print "The value of pi is around " + str(3.14)
