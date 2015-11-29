@@ -1,0 +1,20 @@
+#! /usr/bin/python
+
+brian = "hello life"
+print brian
+
+hey = 'This isn\'t flying, this is falling with style!'
+print hey
+
+fifth_letter = "MONTY"[4]
+print fifth_letter
+
+parrot = "Norwegian Blue"
+print len(parrot)
+print parrot.lower()
+print parrot.upper()
+
+pi=3.14
+print str(pi)
+
+print "Monty Python"
