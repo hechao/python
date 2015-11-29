@@ -1,0 +1,22 @@
+#! /usr/bin/python
+
+# comment
+'''comment
+'''
+spam = True
+spam2 = False
+spam3 = ("aaa")
+
+a = 1111
+b = 2222
+c = a+b
+d = a-b
+e = a*b
+f =a/b
+print (spam)
+print (spam2)
+print (spam3)
+printprint (c)
+print (d)
+print (e)
+print(f)
