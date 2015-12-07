@@ -1,12 +1,13 @@
 #! /usr/bin/python
 
-import bs4 
+from bs4 import BeautifulSoup
 import requests
+import urllib2
 
 url = 'http://www.jisilu.cn/data/bond/\#tlink_1'
 
-response = requests.get(url)
-soup = bs4.BeautifulSoup(response.text, 'html.parser')
+page = urllib2.urlopen(url)
+soup = BeautifulSoup(page, from_encoding="utf8")
 
 def pr_title():
 	print soup.title
@@ -30,5 +31,6 @@ print result
 log = open('log.html', 'w')
 log.writelines(str(result))
 log.close()
+
 
 
