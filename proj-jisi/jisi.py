@@ -4,26 +4,14 @@ from bs4 import BeautifulSoup
 import urllib2
 import datetime
 import os
-from readuser import read_user
-
-user = read_user(0)
-
-user_seq = user['1'][0]
-user_name = user['1'][1]
-user_profit = user['1'][2]
-user_email = user['1'][3]
-
-print "current setup is for %s, number is %s, profit target %s, email is %s" % (user_name, user_seq, user_profit, user_email)
-#print type(user_email)
 
 url = 'http://www.jisilu.cn/data/bond/?do_search=&sort_column=&sort_order=&forall=1&from_rating_cd=A&from_issuer_rating_cd=A&from_year_left=0&from_repo=0&from_ytm=4&from_volume=0&from_market=&y1=&y2=&to_rating_cd=AAA&to_issuer_rating_cd=AAA&to_year_left=25&to_repo=2&to_ytm=30&to_volume='
 
 page = urllib2.urlopen(url)
 soup = BeautifulSoup(page, from_encoding="utf8")
 
-
 def find_value():
-
+# find all value and make dict
 	d = {}
 
 	tbody = soup.find_all('tbody')[0]
@@ -48,11 +36,9 @@ def find_value():
 	#d2 = sorted(d.iteritems(), key=itemgetter(1), reverse=True)
 	return d
 
-result_raw = find_value()
-#print result
 
-def high_d(result_raw):
-
+def high_d(result_raw, user_profit):
+# find matched value 
 	log = open('log.html', 'w')
 	line_date = str(datetime.datetime.now()) + "\n"
 	log.writelines(line_date)
@@ -72,13 +58,11 @@ def high_d(result_raw):
 	
 	return high_d
 
-result = high_d(result_raw)
 
-def send(result):
+def send(result, user_name, user_email):
+# send email
 	if len(result) !=0:
 		os.system("mail -s 'Find matched bond for you (%s) !!' %s < log.html" % (user_name, user_email))
 		print "email sent!"
 	else:
 		print "None find!"
-
-send(result)
