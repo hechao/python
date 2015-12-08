@@ -67,7 +67,9 @@ def high_d(result_raw):
 			print line_data
 			log.writelines(line_data)
 
-	log.close()		
+	log.close()
+	print "the total number of matched bond is", len(high_d)	
+	
 	return high_d
 
 result = high_d(result_raw)
@@ -75,6 +77,7 @@ result = high_d(result_raw)
 def send(result):
 	if len(result) !=0:
 		os.system("mail -s 'Find matched bond for you (%s) !!' %s < log.html" % (user_name, user_email))
+		print "email sent!"
 	else:
 		print "None find!"
 
