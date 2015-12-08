@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 from readuser import read_user
 import jisi
 
