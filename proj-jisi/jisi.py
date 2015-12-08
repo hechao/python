@@ -1,8 +1,8 @@
-#! /usr/bin/python
+
 
 from bs4 import BeautifulSoup
-from operator import itemgetter
-import requests
+#from operator import itemgetter
+#import requests
 import urllib2
 import datetime
 

@@ -1,4 +1,0 @@
-#! /bin/sh
-cd /root/python/jisi/
-python jisi.py
-mail -s 'bond' formblackt@gmail.com < log.html
