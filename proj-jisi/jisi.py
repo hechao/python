@@ -1,15 +1,18 @@
-
-
 from bs4 import BeautifulSoup
 #from operator import itemgetter
 #import requests
 import urllib2
 import datetime
+import os
 
 url = 'http://www.jisilu.cn/data/bond/?do_search=&sort_column=&sort_order=&forall=1&from_rating_cd=A&from_issuer_rating_cd=A&from_year_left=0&from_repo=0&from_ytm=4&from_volume=0&from_market=&y1=&y2=&to_rating_cd=AAA&to_issuer_rating_cd=AAA&to_year_left=25&to_repo=2&to_ytm=30&to_volume='
 
 page = urllib2.urlopen(url)
 soup = BeautifulSoup(page, from_encoding="utf8")
+
+tred =8.5
+
+#tred = input ("please enter a check value for bond profit:  ")
 
 def find_value():
 
@@ -17,7 +20,7 @@ def find_value():
 
 	tbody = soup.find_all('tbody')[0]
 	tr_list = tbody.find_all('tr')
-	print "avaialbe number is    " + str(len(tr_list))
+	print "Total Bond number is    " + str(len(tr_list))
 
 	for x in range(0, len(tr_list),1):
 
@@ -49,7 +52,7 @@ def high_d(result_raw):
 	high_d={}
 
 	for key in result_raw:
-		if result_raw[key] >8:
+		if result_raw[key] > tred:
 
 			high_d[key] = result_raw[key]
 			line_data = "Bond name: %s, Bond profit: %s;" % (key, result_raw[key]) + "\n"
@@ -60,4 +63,11 @@ def high_d(result_raw):
 	return high_d
 
 result = high_d(result_raw)
+
+def send(result):
+	if len(result) !=0:
+		os.system("mail -s 'Find matched bond!!' formblackt@gmail.com < log.html")
+
+send(result)
+
 
