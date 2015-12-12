@@ -11,13 +11,17 @@ page = urllib2.urlopen(url)
 soup = BeautifulSoup(page, from_encoding="utf8")
 
 def find_value():
-# find all value and make dict
-	d = {}
+# find all the bond and relevant ytm value
+	bond_raw = {}
 
+# find all tbody value and use 0
 	tbody = soup.find_all('tbody')[0]
+
+# find all tr value, which is the total number of bond
 	tr_list = tbody.find_all('tr')
 	print "Total Bond number is    " + str(len(tr_list))
 
+# find bond number in href url, and ytm value
 	for x in range(0, len(tr_list),1):
 
 		name = tr_list[x].find_all('td')[0].find_all('a')[0].get('href')
@@ -27,36 +31,36 @@ def find_value():
 		if len(ytm) !=0:
 			value_ytm = round(float(ytm),1)
 			#print value_ytm
-			d[name] = value_ytm
+			bond_raw[name] = value_ytm
 		else:
 			value_ytm = 0
 			#print "ytm is 0"
-			d[name] = value_ytm
+			bond_raw[name] = value_ytm
 	
 	#d2 = sorted(d.iteritems(), key=itemgetter(1), reverse=True)
-	return d
+	return bond_raw
 
 
-def high_d(result_raw, user_profit):
-# find matched value 
+def high_bond(bond_raw, user_profit):
+# find the bond which has high profit, open log.html and write into it 
 	log = open('log.html', 'w')
 	line_date = str(datetime.datetime.now()) + "\n"
 	log.writelines(line_date)
 
-	high_d={}
+	high_bond={}
 
-	for key in result_raw:
-		if result_raw[key] > float(user_profit):
+	for key in bond_raw:
+		if bond_raw[key] > float(user_profit):
 
-			high_d[key] = result_raw[key]
-			line_data = "Bond name: %s, Bond profit: %s;" % (key, result_raw[key]) + "\n"
+			high_bond[key] = bond_raw[key]
+			line_data = "Bond name: %s, Bond profit: %s;" % (key, bond_raw[key]) + "\n"
 			print line_data
 			log.writelines(line_data)
 
 	log.close()
-	print "the total number of matched bond is", len(high_d)	
+	print "the total number of matched bond is", len(high_bond)	
 	
-	return high_d
+	return high_bond
 
 
 def send(result, user_name, user_email):

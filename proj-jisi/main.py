@@ -1,7 +1,7 @@
 #! /usr/bin/python
 
 from readuser import read_user
-import jisi
+import bond
 
 user = read_user(0)
 
@@ -13,8 +13,8 @@ user_email = user['1'][3]
 print "current setup is for %s, number is %s, profit target %s, email is %s" % (user_name, user_seq, user_profit, user_email)
 #print type(user_email)
 
-result_raw = jisi.find_value()
+bond_raw = bond.find_value()
 
-result = jisi.high_d(result_raw, user_profit)
+result = bond.high_bond(bond_raw, user_profit)
 
-jisi.send(result, user_name, user_email)
+bond.send(result, user_name, user_email)
