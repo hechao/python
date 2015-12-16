@@ -28,7 +28,7 @@ print "current setup is for %s, number is %s, profit target %s, email is %s" % (
 
 
 
-bond_raw = bond.find_value()
+bond_raw = bond.bond_raw()
 
 
 

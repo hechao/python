@@ -22,7 +22,7 @@ soup = BeautifulSoup(page, from_encoding="utf8")
 
 
 
-def find_value():
+def bond_raw():
 
 # find all the bond and relevant ytm value
 
