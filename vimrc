@@ -1,3 +1,4 @@
+:set noswapfile
 
 set nocompatible " required
 filetype off " required
@@ -23,6 +24,15 @@ Bundle "vim-scripts/indentpython.vim"
 
 let python_highlight_all=1
 syntax on
+
+set background=dark
+set foldmethod=indent
+set foldlevel=99
+ 
+" press space to fold/unfold code
+nnoremap <space> za
+vnoremap <space> zf
+
 
 " All of your Plugins must be added before the following line
 call vundle#end() " required
