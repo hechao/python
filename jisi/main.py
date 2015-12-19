@@ -1,9 +1,9 @@
 #! /usr/bin/python
 
-from readuser import read_user
+import readuser
 import bond
 
-user = read_user(0)
+user = readuser.read_user(0)
 
 ID = 'hechao'
 
@@ -17,8 +17,8 @@ print "current user name is %s, profit target %s, email is %s" % (user_name, use
 
 bond_raw = bond.bond_raw()
 
-high_bond = bond.high_bond(bond_raw, user_profit)
+bond_high = bond.bond_high(bond_raw, user_profit)
 
-max_bond = bond.max_bond(high_bond)
+bond_max = bond.bond_max(bond_high)
 
-bond.send(high_bond, max_bond, user_name, user_email)
+readuser.email(bond_high, bond_max, user_name, user_email)

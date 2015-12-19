@@ -36,7 +36,7 @@ def bond_raw():
 	#d2 = sorted(d.iteritems(), key=itemgetter(1), reverse=True)
 	return bond_raw
 
-def high_bond(bond_raw, user_profit):
+def bond_high(bond_raw, user_profit):
 # find the bond which has high profit, open log.html and write into it 
 	log = open('log.html', 'w')
 	line_date = str(datetime.datetime.now()) + "\n"
@@ -54,7 +54,7 @@ def high_bond(bond_raw, user_profit):
 	print "the total number of matched bond is", len(high_bond)
 	return high_bond
 
-def max_bond(high_bond):
+def bond_max(high_bond):
 #find out the max bond 
 	if len(high_bond.values()) != 0:
 		max_bond = max(high_bond.values())
@@ -63,10 +63,3 @@ def max_bond(high_bond):
 	max_bond = str(max_bond) + '%'
 	return max_bond
 
-def send(high_bond, max_bond, user_name, user_email):
-# send email
-	if len(high_bond) !=0:
-		os.system("mail -s 'Find matched bond for you (%s), highest profit is %s!!' %s < log.html" % (user_name, max_bond, user_email))
-		print "email sent!"
-	else:
-		print "None find!"

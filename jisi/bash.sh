@@ -1,3 +1,3 @@
 #! /bin/sh
-cd /root/python/jisi/
+cd /srv/www/python/jisi/
 python main.py
