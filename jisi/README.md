@@ -1,5 +1,6 @@
 to install<br>
-1. install git and clone it
-2. apt-get install python-bs4
-3. make sure email can work: dpkg-reconfigure exim4-config
+1. install git and clone it<br>
+2. apt-get install python-bs4<br>
+3. make sure email can work: dpkg-reconfigure exim4-config<br>
+<br>
 improve threshold 8.5 and 9 alert
