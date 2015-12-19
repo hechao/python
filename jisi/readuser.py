@@ -5,12 +5,11 @@ def read_user(user_seq):
 	mydict ={}
 
 	for usr in d:
-		usr_num = usr.split(':')[0]
-		usr_name = usr.split(':')[1]
-		usr_target = usr.split(':')[2]
-		usr_email = usr.split(':')[3].rstrip('\n')
+		usr_name = usr.split(':')[0]
+		usr_target = usr.split(':')[1]
+		usr_email = usr.split(':')[2].rstrip('\n')
 		#usr_email = usr.split(':')[3]
-		mydict[usr_num] = (usr_num, usr_name, usr_target, usr_email)
+		mydict[usr_name] = (usr_name, usr_target, usr_email)
 		#print mydict
 
 	"""for x in mydict:

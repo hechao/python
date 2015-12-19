@@ -5,12 +5,13 @@ import bond
 
 user = read_user(0)
 
-user_seq = user['1'][0]
-user_name = user['1'][1]
-user_profit = user['1'][2]
-user_email = user['1'][3]
+ID = 'hechao'
 
-print "current setup is for %s, number is %s, profit target %s, email is %s" % (user_name, user_seq, user_profit, user_email)
+user_name = user[ID][0]
+user_profit = user[ID][1]
+user_email = user[ID][2]
+
+print "current user name is %s, profit target %s, email is %s" % (user_name, user_profit, user_email)
 
 #print type(user_email)
 
