@@ -1,3 +1,3 @@
 #! /bin/sh
-cd /root/python/proj-jisi/
+cd /root/python/jisi/
 python main.py
