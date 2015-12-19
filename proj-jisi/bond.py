@@ -128,7 +128,12 @@ def high_bond(bond_raw, user_profit):
 
 def max_bond(high_bond):
 
-	max_bond = max(high_bond.values())
+	if len(high_bond.values()) != 0:
+
+		max_bond = max(high_bond.values())
+
+	else:
+		max_bond = 'N/A'
 
 	max_bond = str(max_bond) + '%'
 
