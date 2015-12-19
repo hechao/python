@@ -1,7 +1,5 @@
-
-
 def read_user(user_seq):
-	f = open('/root/python/proj-jisi/user.txt')
+	f = open('user.txt')
 	d = f.readlines()
 	f.close()
 	mydict ={}
@@ -10,8 +8,9 @@ def read_user(user_seq):
 		usr_num = usr.split(':')[0]
 		usr_name = usr.split(':')[1]
 		usr_target = usr.split(':')[2]
-		usr_intv = usr.split(':')[3].rstrip('\n')
-		mydict[usr_num] = (usr_num, usr_name, usr_target, usr_intv)
+		usr_email = usr.split(':')[3].rstrip('\n')
+		#usr_email = usr.split(':')[3]
+		mydict[usr_num] = (usr_num, usr_name, usr_target, usr_email)
 		#print mydict
 
 	"""for x in mydict:
