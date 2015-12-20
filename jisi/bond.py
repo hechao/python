@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 #import requests
 import urllib2
 import os
+from misc import log
 
 url = 'http://www.jisilu.cn/data/bond/?do_search=&sort_column=&sort_order=&forall=1&from_rating_cd=A&from_issuer_rating_cd=A&from_year_left=0&from_repo=0&from_ytm=4&from_volume=0&from_market=&y1=&y2=&to_rating_cd=AAA&to_issuer_rating_cd=AAA&to_year_left=25&to_repo=2&to_ytm=30&to_volume='
 
@@ -35,11 +36,6 @@ def bond_raw():
 			bond_raw[name] = value_ytm
 	#d2 = sorted(d.iteritems(), key=itemgetter(1), reverse=True)
 	return bond_raw
-
-def log(data):
-    log = open('log.html', 'a+')
-    log.writelines(data)
-    log.close()
     
 def bond_high(bond_raw, user_profit):
 # find the bond which has high profit, open log.html and write into it 

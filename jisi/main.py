@@ -1,10 +1,10 @@
 #! /usr/bin/python
 
-import readuser
-import bond
+from misc import read_user, email, log
+from bond import bond_raw, bond_high, bond_max
 import datetime
 
-user = readuser.read_user(0)
+user = read_user(0)
 
 ID = 'hechao'
 
@@ -17,12 +17,12 @@ print "current user name is %s, profit target %s, email is %s" % (user_name, use
 #print type(user_email)
 
 date = str(datetime.datetime.now()) + "\n" +'<br>'
-bond.log(date)
+log(date)
+log('<br>')
 
-bond_raw = bond.bond_raw()
+bond_raw = bond_raw()
+bond_high = bond_high(bond_raw, user_profit)
+bond_max = bond_max(bond_high)
+log('<br>')
 
-bond_high = bond.bond_high(bond_raw, user_profit)
-
-bond_max = bond.bond_max(bond_high)
-
-readuser.email(bond_high, bond_max, user_name, user_email)
+email(bond_high, bond_max, user_name, user_email)

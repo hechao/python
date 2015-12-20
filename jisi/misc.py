@@ -27,3 +27,7 @@ def email(high_bond, max_bond, user_name, user_email):
 	else:
 		print "None find!"
 
+def log(data):
+    log = open('log.html', 'a+')
+    log.writelines(data)
+    log.close()
