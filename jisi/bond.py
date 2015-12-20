@@ -1,14 +1,11 @@
 
 from bs4 import BeautifulSoup
-#from operator import itemgetter
-#import requests
-import urllib2
-import os
+from urllib2 import urlopen
 from misc import log
 
 url = 'http://www.jisilu.cn/data/bond/?do_search=&sort_column=&sort_order=&forall=1&from_rating_cd=A&from_issuer_rating_cd=A&from_year_left=0&from_repo=0&from_ytm=4&from_volume=0&from_market=&y1=&y2=&to_rating_cd=AAA&to_issuer_rating_cd=AAA&to_year_left=25&to_repo=2&to_ytm=30&to_volume='
 
-page = urllib2.urlopen(url)
+page = urlopen(url)
 soup = BeautifulSoup(page, from_encoding="utf8")
 
 
