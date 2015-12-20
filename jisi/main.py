@@ -2,6 +2,7 @@
 
 import readuser
 import bond
+import datetime
 
 user = readuser.read_user(0)
 
@@ -14,6 +15,9 @@ user_email = user[ID][2]
 print "current user name is %s, profit target %s, email is %s" % (user_name, user_profit, user_email)
 
 #print type(user_email)
+
+date = str(datetime.datetime.now()) + "\n" +'<br>'
+bond.log(date)
 
 bond_raw = bond.bond_raw()
 
