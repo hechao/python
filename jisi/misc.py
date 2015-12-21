@@ -1,5 +1,6 @@
 #! /usr/bin/python
 #-*- encoding: utf-8 -*-
+
 import os
 
 def read_user(user_seq):
@@ -16,12 +17,7 @@ def read_user(user_seq):
 		mydict[usr_name] = (usr_name, usr_target, usr_email)
 		#print mydict
 
-	"""for x in mydict:
-		print "This user's number is %s, user name is %s, user target profit is %s, user interval is %s)" % (x, mydict[x][1], mydict[x][2],mydict[x][3])"""
-
 	return mydict
-
-
 
 def email(confirm, title, user_email):
 	if confirm is True:
@@ -32,15 +28,6 @@ def email(confirm, title, user_email):
 	else:
 		print "None find!"
 
-def log_a(data):
-    log = open('/srv/www/index.html', 'a+')
-    log.writelines(data)
-    log.close()
-    
-def log_w(data):
-    log = open('/srv/www/index.html', 'w')
-    log.writelines(data)
-    log.close()
     
 #if __name__ == "__main__":
 

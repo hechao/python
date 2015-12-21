@@ -6,8 +6,8 @@
 
 from bs4 import BeautifulSoup
 from urllib2 import urlopen
-from misc import log_a
 import json
+#import string
 
 #print(__name__)
 
@@ -19,46 +19,43 @@ def etf(etf_url):
     pp = eval(p)
     
     cells = json.dumps(pp['rows'],indent=1)
-    #print cells_list
-    #print type(cells_list)
     cells_list=json.loads(cells)
-    #print type(cells_list)
     
     di ={}
 
     for cell in cells_list:
+        #print cell
         cell_dict = eval(str(cell))
         in_cell = cell_dict[u'cell']
+        
         value_dict = eval(str(in_cell))
-        #print value_dict
-        cell_id = str(value_dict[u'fund_id'])
         
-        #cell_name = str(value_dict[ u'index_nm'])
-        cell_name = value_dict[ u'index_nm']
-        cell_name = cell_name.decode('unicode_escape')
-        cell_name = cell_name.encode("utf-8")
-        cell_name = str(cell_name)
-        #print type(cell_name)
+        etf_name = value_dict[u'fund_nm']
+        etf_name = etf_name.decode('unicode_escape')
+        etf_name = etf_name.encode("utf-8")
         
-        cell_pe = str(value_dict[u'pe'])
-        #print cell_pe
-        di[cell_name] = cell_pe
+        etf_pe = str(value_dict[u'pe'])
+        
+        etf_index_nm = value_dict[u'index_nm']
+        etf_index_nm = etf_index_nm.decode('unicode_escape')
+        etf_index_nm = etf_index_nm.encode("utf-8")
+        #print etf_index_nm
+        
+        di[etf_name] = (etf_pe, etf_index_nm)
+
+        #print di
+        
+    high_di = {}
     
-    #print di
-        
     for i in di:
-        if di[i] != "-" and di[i] != "0":
-            #di_pe = str(di[i])
-            if float(di[i]) <10:
-                etf_line = i + "'s pe =" + di[i] + "<br>\n"
-                #print etf_line
-                log_a(etf_line)
-        else:
-                etf_line = i + "'s pe = empty value or 0" + "<br>\n"
-                #print etf_line
-                log_a(etf_line)
-    
-    return di
-        
+        if di[i][0] == "-" or di[i][0] == "0.000" or float(di[i][0]) <10:
+            #print di[i][0]
+            high_di[i] = (di[i][0],di[i][1])
+                
+    #print high_di
+    return high_di
+
 if __name__ == "__main__":
-    etf()
+    url = 'http://jisilu.cn/jisiludata/etf.php'
+    etf(url)
+    
