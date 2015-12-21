@@ -1,3 +1,5 @@
+#! /usr/bin/python
+#-*- encoding: utf-8 -*-
 import os
 
 def read_user(user_seq):
@@ -18,16 +20,27 @@ def read_user(user_seq):
 		print "This user's number is %s, user name is %s, user target profit is %s, user interval is %s)" % (x, mydict[x][1], mydict[x][2],mydict[x][3])"""
 
 	return mydict
-	
-def email(high_bond, max_bond, user_name, user_email):
-# send email
-	if len(high_bond) !=0:
-		os.system("mail -s 'Find matched bond for you (%s), highest profit is %s!!' %s < log.html" % (user_name, max_bond, user_email))
-		print "email sent!"
+
+
+
+def email(confirm, title, user_email):
+	if confirm is True:
+		command = "mail -s '%s' %s < /srv/www/index.html" % (title, user_email)
+		#print command
+		os.system(command)
+		print "Email sent!"
 	else:
 		print "None find!"
 
-def log(data):
-    log = open('log.html', 'a+')
+def log_a(data):
+    log = open('/srv/www/index.html', 'a+')
     log.writelines(data)
     log.close()
+    
+def log_w(data):
+    log = open('/srv/www/index.html', 'w')
+    log.writelines(data)
+    log.close()
+    
+#if __name__ == "__main__":
+
