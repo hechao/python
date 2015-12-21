@@ -3,16 +3,17 @@
 
 import datetime
 
+index = '/srv/www/index.html'
 etf_url = 'http://jisilu.cn/jisiludata/etf.php'
 bond_url = 'http://www.jisilu.cn/data/bond/?do_search=&sort_column=&sort_order=&forall=1&from_rating_cd=A&from_issuer_rating_cd=A&from_year_left=0&from_repo=0&from_ytm=4&from_volume=0&from_market=&y1=&y2=&to_rating_cd=AAA&to_issuer_rating_cd=AAA&to_year_left=25&to_repo=2&to_ytm=30&to_volume='
 
     
 def print_html(bond_high,bond_max,etf_high):
     # open index
-    log = open('/srv/www/index.html', 'w')
+    log = open(index, 'w')
     log.write('<html>\n')
     log.close()
-    log = open('/srv/www/index.html', 'a+')
+    log = open(index, 'a+')
     
     #打印head
     log.write('<head>\n')
