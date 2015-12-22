@@ -41,9 +41,29 @@ def print_html(bond_high,bond_max,etf_high):
     log.write('<br>\n')
 
     for i in etf_high:
-        etf_log = "* %s 的PE值是 %s, (对应指数 %s) <br>\n" % (i, etf_high[i][0], etf_high[i][1])
-        log.write(etf_log)
-       
+        if etf_high[i][2] == '金融类':
+            etf_log = "* (%s) %s 的PE值是 %s, (对应指数 %s) <br>\n" % (etf_high[i][2], i, etf_high[i][0], etf_high[i][1])
+            log.write(etf_log)
+    log.write('<br>\n')
+
+    for i in etf_high:
+        if etf_high[i][2] == '恒生类':
+            etf_log = "* (%s) %s 的PE值是 %s, (对应指数 %s) <br>\n" % (etf_high[i][2], i, etf_high[i][0], etf_high[i][1])
+            log.write(etf_log)
+    log.write('<br>\n')
+
+    for i in etf_high:
+        if etf_high[i][2] == '其他类':
+            etf_log = "* (%s) %s 的PE值是 %s, (对应指数 %s) <br>\n" % (etf_high[i][2], i, etf_high[i][0], etf_high[i][1])
+            log.write(etf_log)
+    log.write('<br>\n')
+
+    for i in etf_high:
+        if etf_high[i][2] == 'NA错误类':
+            etf_log = "* (%s) %s 的PE值是 %s, (对应指数 %s) <br>\n" % (etf_high[i][2], i, etf_high[i][0], etf_high[i][1])
+            log.write(etf_log)
+    log.write('<br>\n')
+
     log.write('<br>\n')
     log.write('</html>')
     log.close()

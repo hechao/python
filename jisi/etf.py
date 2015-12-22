@@ -49,10 +49,18 @@ def etf(etf_url):
     
     for i in di:
         if di[i][0] == "-" or di[i][0] == "0.000" or float(di[i][0]) <10:
-            #print di[i][0]
-            high_di[i] = (di[i][0],di[i][1])
-                
-    #print high_di
+            #print di[i][1]
+            if di[i][1].find('金融') != -1:
+                high_di[i] = (di[i][0],di[i][1],'金融类')
+            elif di[i][1].find('恒生') != -1:
+                high_di[i] = (di[i][0],di[i][1],'恒生类')
+            elif di[i][0].find('0.000') != -1:
+                high_di[i] = (di[i][0],di[i][1],'NA错误类')
+            elif di[i][0].find('-') != -1:
+                high_di[i] = (di[i][0],di[i][1],'NA错误类')   
+            else:
+                high_di[i] = (di[i][0],di[i][1],'其他类')
+        
     return high_di
 
 if __name__ == "__main__":
