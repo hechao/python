@@ -7,7 +7,10 @@
 from bs4 import BeautifulSoup
 from urllib2 import urlopen
 import json
-#import string
+import sys  
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
 
 #print(__name__)
 
@@ -15,53 +18,41 @@ def etf(etf_url):
     page = urlopen(etf_url)
     soup = BeautifulSoup(page, from_encoding="utf8")
 
-    p = soup.p.string
-    pp = eval(p)
+    soup = soup.p.string
+    soup = eval(soup)
+    #print soup
     
-    cells = json.dumps(pp['rows'],indent=1)
-    cells_list=json.loads(cells)
+    rows_str = json.dumps(soup['rows'],indent=1)
+    cells_list=json.loads(rows_str)
+    #cells_list = cells_list[0]
     
-    di ={}
+    etf_raw ={}
 
-    for cell in cells_list:
-        #print cell
-        cell_dict = eval(str(cell))
-        in_cell = cell_dict[u'cell']
+    for cells in cells_list:
+        etf_data = cells[u'cell']
+        etf_name = etf_data[u'fund_nm'].decode('unicode_escape')
+        etf_pe = etf_data[u'pe']
+        etf_index_nm = etf_data[u'index_nm'].decode('unicode_escape')
+        #print etf_name
+        etf_raw[etf_name] = (etf_pe, etf_index_nm)
         
-        value_dict = eval(str(in_cell))
-        
-        etf_name = value_dict[u'fund_nm']
-        etf_name = etf_name.decode('unicode_escape')
-        etf_name = etf_name.encode("utf-8")
-        
-        etf_pe = str(value_dict[u'pe'])
-        
-        etf_index_nm = value_dict[u'index_nm']
-        etf_index_nm = etf_index_nm.decode('unicode_escape')
-        etf_index_nm = etf_index_nm.encode("utf-8")
-        #print etf_index_nm
-        
-        di[etf_name] = (etf_pe, etf_index_nm)
-
-        #print di
-        
-    high_di = {}
+    etf_high = {}
     
-    for i in di:
-        if di[i][0] == "-" or di[i][0] == "0.000" or float(di[i][0]) <10:
+    for i in etf_raw:
+        if etf_raw[i][0] == "-" or etf_raw[i][0] == "0.000" or float(etf_raw[i][0]) <10:
             #print di[i][1]
-            if di[i][1].find('金融') != -1:
-                high_di[i] = (di[i][0],di[i][1],'金融类')
-            elif di[i][1].find('恒生') != -1:
-                high_di[i] = (di[i][0],di[i][1],'恒生类')
-            elif di[i][0].find('0.000') != -1:
-                high_di[i] = (di[i][0],di[i][1],'NA错误类')
-            elif di[i][0].find('-') != -1:
-                high_di[i] = (di[i][0],di[i][1],'NA错误类')   
+            if etf_raw[i][1].find('金融') != -1:
+                etf_high[i] = (etf_raw[i][0],etf_raw[i][1],'金融类')
+            elif etf_raw[i][1].find('恒生') != -1:
+                etf_high[i] = (etf_raw[i][0],etf_raw[i][1],'恒生类')
+            elif etf_raw[i][0].find('0.000') != -1:
+                etf_high[i] = (etf_raw[i][0],etf_raw[i][1],'NA错误类')
+            elif etf_raw[i][0].find('-') != -1:
+                etf_high[i] = (etf_raw[i][0],etf_raw[i][1],'NA错误类')   
             else:
-                high_di[i] = (di[i][0],di[i][1],'其他类')
-        
-    return high_di
+                etf_high[i] = (etf_raw[i][0],etf_raw[i][1],'其他类')
+                
+    return etf_high
 
 if __name__ == "__main__":
     url = 'http://jisilu.cn/jisiludata/etf.php'

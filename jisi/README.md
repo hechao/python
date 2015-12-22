@@ -8,5 +8,5 @@ to install<br>
 improve threshold 8.5 and 9 alert
 
 改进
-1. 输出index.html信息整合
-2. etf 信息补全
+1. 修改邮件标题
+2. 指数信息
