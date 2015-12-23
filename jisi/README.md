@@ -5,8 +5,6 @@ to install<br>
 4. set crontab -e to run bash.sh per hour
 <br>
 
-improve threshold 8.5 and 9 alert
-
-改进
-1. 修改邮件标题
-2. 指数信息
+improvement
+1. table print
+2. sort print indice
