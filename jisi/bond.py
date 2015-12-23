@@ -9,24 +9,22 @@ def bond_raw(bond_url):
 	page = urlopen(bond_url)
 	soup = BeautifulSoup(page, from_encoding="utf8")
 	bond_raw = {}
-	# find all tbody value and use 0
-	tbody = soup.find_all('tbody')[0]
-    # find all tr value, which is the total number of bond
-	tr_list = tbody.find_all('tr')
-    # find bond number in href url, and ytm value
-	for x in range(0, len(tr_list),1):
-		name = tr_list[x].find_all('td')[0].find_all('a')[0].get('href')
-		name = name[18:]
-		ytm  = tr_list[x].find_all('td')[10].get('ytm')
 
-		if len(ytm) !=0:
-			value_ytm = round(float(ytm),1)
-			#print value_ytm
-			bond_raw[name] = value_ytm
-		else:
-			value_ytm = 0
-			#print "ytm is 0"
-			bond_raw[name] = value_ytm
+	bond_name_list = soup.find_all("td", "acenter nowrap")
+	bond_value_rawlist = soup.find_all("td", ytm=True)
+	bond_value_list = []
+	for i in bond_value_rawlist:
+	    i = float(i.get('ytm'))
+	    bond_value_list.append(i)
+	bond_value_list = bond_value_list[1::2]
+	#print bond_value_list
+	for i in range(len(bond_name_list)):
+	    bond_name = bond_name_list[i].string
+	    bond_value = bond_value_list[i]
+	    bond_raw[bond_name] = bond_value
+	    #print type(bond_value)
+	    
+	#print bond_raw
 	return bond_raw
     
 def bond_high(bond_raw, user_profit):
@@ -46,3 +44,9 @@ def bond_max(bond_high):
 	max_bond = str(max_bond) + '%'
 	return max_bond
 
+if __name__ == "__main__":
+    bond_url = 'http://www.jisilu.cn/data/bond/?do_search=&sort_column=&sort_order=&forall=1&from_rating_cd=A&from_issuer_rating_cd=A&from_year_left=0&from_repo=0&from_ytm=4&from_volume=0&from_market=&y1=&y2=&to_rating_cd=AAA&to_issuer_rating_cd=AAA&to_year_left=25&to_repo=2&to_ytm=30&to_volume='
+
+    bond_raw = bond_raw(bond_url)
+    bond_high = bond_high(bond_raw, 9)
+    bond_max = bond_max(bond_high)

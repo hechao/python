@@ -2,9 +2,12 @@
 #-*- encoding: utf-8 -*-
 
 from bs4 import BeautifulSoup
-from urllib2 import urlopen
+import urllib2
 from datetime import datetime
+import socket
 
+class MyException(Exception):
+    pass
     
 def indice():
     indice_dt = {}
@@ -30,17 +33,32 @@ def indice():
         #print i, indice_dt[i]
         indice_url ='http://markets.ft.com/research/Markets/Tearsheets/Summary?s=%s' % i
         print indice_url
-        page = urlopen(indice_url, timeout=10)
-        soup = BeautifulSoup(page, from_encoding="utf8")
+        while True:
+            try:
+                page = urllib2.urlopen(indice_url, timeout=10)
+                soup = BeautifulSoup(page, from_encoding="utf8")
+            except urllib2.URLError:
+                print "Bad URL!"
+                #indice_dt_update[i].append('Data Read Bad URL!')
+                #indice_dt_update[i].append('Data Read Bad URL!')
+                continue
+                #print type(e)
+                #raise MyException("There was an error: %r" % e)
         
-        indice_raw = {}
-        
+            except socket.timeout:
+                print "Timeout!"
+                #indice_dt_update[i].insert(1, 'Data Read Timeout!')
+                #indice_dt_update[i].insert(2, 'Data Read Timeout!')
+                continue
+            
+            break
+            
         indice_close = soup.find_all("tr", "last")[1].find_all('td')[0]
         #print indice_close
         indice_close = indice_close.string.encode('utf-8')
         indice_close = indice_close.replace(",", "")
         indice_dt_update[i].insert(2, indice_close)
-        
+            
         indice_indicator = soup.find_all("div", "indicator")[0].get('style')
         #print indice_indicator
         indice_dt_update[i].insert(3, indice_indicator)

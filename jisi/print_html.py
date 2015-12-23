@@ -108,7 +108,7 @@ def print_indice():
         indice_name = indice[i][1]
         indice_index = indice[i][2]
         indice_52k = indice[i][3]
-        indice_line = "*** %s  类的  %s  指数的值是%s,   52K排位是  %s<br>\n" % (indice_class, indice_name, indice_index, indice_52k)
+        indice_line = "*** %s  类的 %s: %s  指数的值是%s,   52K排位是  %s<br>\n" % (indice_class, i, indice_name, indice_index, indice_52k)
         #print type(gain_line)
         log.write(indice_line)
     log.write('<br>\n')
