@@ -2,6 +2,7 @@
 #-*- encoding: utf-8 -*-
 
 from datetime import datetime
+import indice2
 import indice
 
 index = '/srv/www/index.html'
@@ -95,18 +96,21 @@ def print_html(bond_high,bond_max,etf_high, fj, kzj):
 def print_indice_head():
     log = open(index, 'a+')
     #打印index
-    log.write('<h3> ###以下是指数收集信息：### </h3>\n')
+    log.write('<h3> ###以下是全球指数收集信息：### </h3>\n')
+    log.write('52K排位越低表明指数数值在近一年内越低.<br>\n')
     
-def print_indice(nm):
+def print_indice():
     log = open(index, 'a+')
 
-    gain = indice.in_gain(nm)
-    gain_line1 = format(gain[0], '.2%')
-    gain_line2 = format(gain[1], '.2%')
-    gain_line3 = format(gain[2], '.2%')
-    gain_line = '%s 近期收益 一天:%s, 三天:%s, 七天:%s' % (nm, gain_line1, gain_line2, gain_line3)
-    #print type(gain_line)
-    log.write(gain_line)
+    indice = indice2.indice()
+    for i in indice:
+        indice_class = indice[i][0]
+        indice_name = indice[i][1]
+        indice_index = indice[i][2]
+        indice_52k = indice[i][3]
+        indice_line = "*** %s  类的  %s  指数的值是%s,   52K排位是  %s<br>\n" % (indice_class, indice_name, indice_index, indice_52k)
+        #print type(gain_line)
+        log.write(indice_line)
     log.write('<br>\n')
 
 def html_end():

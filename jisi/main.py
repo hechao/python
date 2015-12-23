@@ -5,7 +5,7 @@ from misc import read_user, email
 from bond import bond_raw, bond_high, bond_max
 import datetime
 from etf import etf
-from print_html import print_html, print_indice, print_indice_head, html_end
+from print_html import print_html, print_indice_head, print_indice, html_end
 from fj import fj
 from kzj import kzj
 
@@ -37,11 +37,7 @@ print_html(bond_high, bond_max, etf_high, fj, kzj)
 
 #打印指数
 print_indice_head()
-print_indice('SHI:SHH')
-print_indice('INX:IOM')
-print_indice('HSI:HKG')
-print_indice('FTPP:FSI')
-print_indice('FTSE:FSI')
+print_indice()
 
 html_end()
 
