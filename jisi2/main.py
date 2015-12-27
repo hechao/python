@@ -5,10 +5,12 @@ from fengji import fj
 from bond import bond_raw, bond_high, bond_max
 from etf import etf
 from kzj import kzj
+from nstock import stock
 from world_indice import indice, indice_filter
 from funda import funda_raw, funda
 
-from html import replace_html, print_fj, print_bond, print_etf, print_kzj, print_indice, print_funda
+
+from html import replace_html, print_fj, print_bond, print_etf, print_kzj, print_stock, print_indice, print_funda
 from datetime import datetime
 import sys
 from misc import read_user, email
@@ -54,6 +56,13 @@ kzj_url = 'http://www.jisilu.cn/data/cbnew_ajax/get_aqd_cb_list/'
 kzj = kzj(kzj_url, 130)
 kzj_str = print_kzj(kzj, kzj_url, index)
 
+#New_stock
+stock_title = '以下是打新股的信息'
+stock_url = 'http://www.jisilu.cn/jisiludata/newstock.php?qtype=apply'
+
+stock_pick = stock(stock_url, 12)
+stock_str = print_stock(stock_pick, stock_url, index)
+
 #world_indice
 indice_title = '以下是国际指数信息:'
 indice_url = 'www.ft.com'
@@ -76,24 +85,27 @@ replace_dict['main_title']=pgt
 replace_dict['bg_line1']=m1
 replace_dict['bg_line2']=m2 
 
-replace_dict['bk_title6']=funda_title
-replace_dict['bk_pg6']=funda_str
+replace_dict['bk_title3']=funda_title
+replace_dict['bk_pg3']=funda_str
 
-replace_dict['bk_title5']=kzj_title
-replace_dict['bk_pg5']=kzj_str
+replace_dict['bk_title4']=kzj_title
+replace_dict['bk_pg4']=kzj_str
 
-replace_dict['bk_title3']=bond_title
-replace_dict['bk_pg3']=bond_str
+replace_dict['bk_title5']=bond_title
+replace_dict['bk_pg5']=bond_str
 
-replace_dict['bk_title4']=fj_title
-replace_dict['bk_pg4']=fj_str
+replace_dict['bk_title6']=fj_title
+replace_dict['bk_pg6']=fj_str
 
-replace_dict['bk_title2']=etf_title
-replace_dict['bk_pg2']=etf_str
+replace_dict['bk_title7']=stock_title
+replace_dict['bk_pg7']=stock_str
 
-replace_dict['bk_title1']=indice_title
-replace_dict['bk_pg1']=indice_str
-    
+replace_dict['bk_title1']=etf_title
+replace_dict['bk_pg1']=etf_str
+
+replace_dict['bk_title2']=indice_title
+replace_dict['bk_pg2']=indice_str
+
 replace_html(f, fn, replace_dict)
 
 #用户

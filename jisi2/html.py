@@ -105,6 +105,21 @@ def print_kzj(kzj, kzj_url, index):
     
     return kzj_str
     
+    
+def print_stock(stock, stock_url, index):
+    log = open(index, 'a+')
+    
+    stock_lines =[]
+    stock_lines.append('* 程序自动抓取"强烈推荐的"打新股的信息.<br>')
+    stock_lines.append("<A HREF=\"stock_url\">'* 信息收集网址 <br><br>'</A>")
+    
+    for i in stock:
+        stock_line = "* %s 的购买评价是 <em><strong>%s</strong></em>,申购日期是 %s-%s. <br>\n" % (i, stock[i][0], stock[i][1], stock[i][2])
+        stock_lines.append(stock_line)
+    
+    stock_str = ''.join(stock_lines)
+    return stock_str
+    
 def print_indice(indice_raw, indice_filter, indice_url, index):
     log = open(index, 'a+')
     
