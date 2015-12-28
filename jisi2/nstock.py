@@ -47,7 +47,7 @@ def stock(stock_url, month):
             #print stock_nm, stock_advise, apy_months, apy_days
             stock_pick[stock_nm] = [stock_advise.decode('unicode_escape'), apy_months, apy_days]
             count = count +1
-    print stock_pick
+    #print stock_pick
     return stock_pick
     
         

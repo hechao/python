@@ -18,10 +18,10 @@ def replace_html(f, fn, replace_dict):
     fn.writelines(old_lines)
     fn.close()
     
-def print_fj(fj, fj_url, index):
+def print_fj(fj, fj_url, web_url):
     #打印封基到index
     #print_part_head('以下是传统封基的收益信息', '程序自动抓取折价在15%以上的传统封基的信息.', fj_url, index)
-    log = open(index, 'a+')
+    log = open(web_url, 'a+')
     
     fj_lines =[]
     fj_lines.append('* 程序自动抓取折价在15%以上的传统封基的信息.<br>')
@@ -36,10 +36,8 @@ def print_fj(fj, fj_url, index):
     fj_str = ''.join(fj_lines)
     return fj_str
     
-def print_bond(bond_high, bond_max, bond_url, index):
-    #债券打印到index
-    #print_part_head('以下是债券的收益信息:', '程序自动抓取隐含收益在9%以上的债券信息.', bond_url)
-    log = open(index, 'a+')
+def print_bond(bond_high, bond_max, bond_url, web_url):
+    log = open(web_url, 'a+')
     
     bond_lines =[]
     bond_lines.append('* 程序自动抓取隐含收益在9%以上的债券信息.<br>')
@@ -56,8 +54,8 @@ def print_bond(bond_high, bond_max, bond_url, index):
     
     return bond_str
 
-def print_etf(etf, etf_url, index):
-    log = open(index, 'a+')
+def print_etf(etf, etf_url, web_url):
+    log = open(web_url, 'a+')
     
     etf_lines =[]
     etf_lines.append('* 程序自动抓取PE在10以下的ETF信息.<br>')
@@ -90,8 +88,8 @@ def print_etf(etf, etf_url, index):
     etf_str = ''.join(etf_lines)
     return etf_str
     
-def print_kzj(kzj, kzj_url, index):
-    log = open(index, 'a+')
+def print_kzj(kzj, kzj_url, web_url):
+    log = open(web_url, 'a+')
     
     kzj_lines =[]
     kzj_lines.append('* 程序自动抓取价格在130以下的可转债的信息.<br>')
@@ -106,8 +104,8 @@ def print_kzj(kzj, kzj_url, index):
     return kzj_str
     
     
-def print_stock(stock, stock_url, index):
-    log = open(index, 'a+')
+def print_stock(stock, stock_url, web_url):
+    log = open(web_url, 'a+')
     
     stock_lines =[]
     stock_lines.append('* 程序自动抓取"强烈推荐的"打新股的信息.<br>')
@@ -120,8 +118,8 @@ def print_stock(stock, stock_url, index):
     stock_str = ''.join(stock_lines)
     return stock_str
     
-def print_indice(indice_raw, indice_filter, indice_url, index):
-    log = open(index, 'a+')
+def print_indice(indice_raw, indice_filter, indice_url, web_url):
+    log = open(web_url, 'a+')
     
     indice_lines =[]
     indice_lines.append('* 程序目前手机52K排位信息,越低表明指数在近一年内的水准.<br>')
@@ -142,8 +140,8 @@ def print_indice(indice_raw, indice_filter, indice_url, index):
     
     return indice_str
         
-def print_funda(funda, funda_url, index):
-    log = open(index, 'a+')
+def print_funda(funda, funda_url, web_url):
+    log = open(web_url, 'a+')
     
     funda_lines =[]
     funda_lines.append('* 提取折价率在10以下，隐含收益在5以上，母鸡溢价率在0一下的分级A.<br>')
@@ -158,7 +156,17 @@ def print_funda(funda, funda_url, index):
     funda_str = ''.join(funda_lines)
     
     return funda_str
+
+def print_index(index_value, index_url, web_url):
+    log = open(web_url, 'a+')
     
+    index_lines =[]
+    for i in index_value:
+        #print type(index_value[i][2])
+        index_line ="* %s (%s) = %s，涨跌幅 %s%%<br>" % (i, index_value[i][0], index_value[i][1], index_value[i][2])
+        index_lines.append(index_line)
+    index_str = ''.join(index_lines)
+    return index_str
     
 if __name__ == "__main__":
     index = '/srv/www/index2.html'
