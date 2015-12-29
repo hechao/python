@@ -19,7 +19,7 @@ request_headers = {
     #"Referer": "http://xueqiu.com/7712974144",
     #"Accept-Encoding": "gzip, deflate, sdch",
     "Accept-Language": "zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4",
-    "Cookie": "s=hzi17uv5ti; bid=d11a25c82345574c16abcf288047d615_iethwirb; __utma=1.1779742401.1442737547.1445853864.1446430797.24; __utmz=1.1442738241.2.2.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); Hm_lvt_1db88642e346389874251b5a1eded6e3=1444369288,1445236220,1445579599,1446430797; xq_a_token=46e824dce44af699473d8786a8a16f2bdb33756c; xq_r_token=e4be0b883ba080bcb9dbf9138fcae5b7c6d84b98",
+    "Cookie": "s=hzi17uv5ti; bid=d11a25c82345574c16abcf288047d615_iethwirb; __utma=1.1779742401.1442737547.1445853864.1446430797.24; __utmz=1.1442738241.2.2.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); Hm_lvt_1db88642e346389874251b5a1eded6e3=1444369288,1445236220,1445579599,1446430797; xq_a_token=623394d80ef89b484bbb46ff591adc135b37850b; xq_r_token=75847f139872b45471ea9ab2b28a62f75a98dd7e",
     }
 
 def index(index_url):
