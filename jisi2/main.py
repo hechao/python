@@ -29,13 +29,12 @@ m1 =  "* 有些投资机会和窗口转瞬即逝, 抓住机会，轮动收益<br
 
 #Index
 index_url = 'http://xueqiu.com/v4/stock/quote.json?code=SH000001%2CSZ399001%2CHKHSI%2CDJI30'
-#index_value = index(index_url)
-#index_str = print_index(index_value, index_url, web_url)
+index_value = index(index_url)
+index_str = print_index(index_value, index_url, web_url)
 
-m2_1 = datetime.now().strftime('* 网页更新时间: %y-%m-%d %I:%M:%S %p <br>\n')
-#m2_2 = index_str
+date = datetime.now().strftime('* 网页更新时间: %y-%m-%d %I:%M:%S %p <br>\n')
 
-m2 = m2_1#+m2_2
+m2 = date+index_str
 
 #fj
 fj_title = '以下是传统封基的收益信息:'

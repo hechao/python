@@ -3,13 +3,16 @@
 
 import cookielib, urllib2
 
-cj = cookielib.CookieJar()
-opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+def content(index_url):
+    cj = cookielib.CookieJar()
+    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
 
-# default User-Agent ('Python-urllib/2.6') will *not* work
-opener.addheaders = [
-    ('User-Agent', 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.11) Gecko/20101012 Firefox/3.6.11'),
-    ]
-
-home = opener.open('https://www.xueqiu.com')
-print cj
+    # default User-Agent ('Python-urllib/2.6') will *not* work
+    opener.addheaders = [
+        ('User-Agent', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'),
+        ]
+    #首先打开主页加载cookie， 然后传递给他index_url作为cookie
+    home = opener.open('http://xueqiu.com/p/discover')
+    quote = opener.open(index_url)
+    content = quote.read()
+    return content

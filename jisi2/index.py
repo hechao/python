@@ -2,13 +2,13 @@
 #-*- encoding: utf-8 -*-
 
 from bs4 import BeautifulSoup
-from urllib2 import urlopen, Request
-import json
+import urllib2, json, cookielib
+from cookie_get import content
 #import sys
 #reload(sys)  
 #sys.setdefaultencoding('utf8')
 
-cookie = "s=hzi17uv5ti; bid=d11a25c82345574c16abcf288047d615_iethwirb; __utma=1.1779742401.1442737547.1445853864.1446430797.24; __utmz=1.1442738241.2.2.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided); Hm_lvt_1db88642e346389874251b5a1eded6e3=1444369288,1445236220,1445579599,1446430797; xq_a_token=d63156e070445899d9ea2302789b58fa3af3d35e; xq_r_token=274e5a74fe473bb08ad4caba027c063eda1ae642"
+cookie = "s=hzi17uv5ti; bid=d11a25c82345574c16abcf288047d615_iethwirb; _sid=aeHts7g2HICu1YqFj3gakImvYqNhRR; xq_a_token=c0a8781567fa9bf50062eb18298c8b0176f0b9e9; xqat=c0a8781567fa9bf50062eb18298c8b0176f0b9e9; xq_r_token=2d7cd99fb375796ffff8caae27a11e3ae4b972d5; xq_is_login=1; u=7712974144; xq_token_expire=Mon%20Jan%2025%202016%2016%3A25%3A00%20GMT%2B0800%20(CST); Hm_lvt_1db88642e346389874251b5a1eded6e3=1451550295; Hm_lpvt_1db88642e346389874251b5a1eded6e3=1451557584; __utmt=1; __utma=1.1779742401.1442737547.1451554654.1451556504.27; __utmb=1.2.10.1451556504; __utmc=1; __utmz=1.1442738241.2.2.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)"
 request_headers = {
     #"GET":"HTTP/1.1",
     #"Host": "xueqiu.com",
@@ -21,12 +21,12 @@ request_headers = {
     #"Accept-Encoding": "gzip, deflate, sdch",
     #"Accept-Language": "zh-CN,zh;q=0.8,en;q=0.6,zh-TW;q=0.4",
     #'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'
-    #"Cookie": cookie,
+    "Cookie": cookie,
     }
 
 def index(index_url):
-    request = Request(index_url, headers=request_headers)
-    page = urlopen(request).read()
+    #request = urllib2.Request(index_url, headers=request_headers)
+    page = content(index_url)
     soup = BeautifulSoup(page, from_encoding="utf8")
 
     soup = soup.p.string
@@ -48,6 +48,7 @@ def index(index_url):
         index_change = index[index_each][u'percentage']
         index_raw[index_id] = [index_nm, index_value, index_change]
     
+    #print index_raw
     return index_raw
 
 if __name__ == "__main__":
