@@ -1,13 +1,13 @@
 #! /usr/bin/python
 #-*- encoding: utf-8 -*-
 
-from fengji import fj
+from data_fengji import fj
 from data_bond import bond_raw, bond_high, bond_max
 from data_etf import etf
-from kzj import kzj
-from nstock import stock
-from world_indice import indice, indice_filter
-from funda import funda_raw, funda
+from data_kzj import kzj
+from data_nstock import stock
+from data_world_indice import indice, indice_filter
+from data_funda import funda_raw, funda
 from index import index
 
 from html import replace_html, print_fj, print_bond, print_etf, print_kzj, print_stock, print_indice, print_funda, print_index
