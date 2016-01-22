@@ -2,7 +2,7 @@
 #-*- encoding: utf-8 -*-
 
 from fengji import fj
-from bond import bond_raw, bond_high, bond_max
+from data_bond import bond_raw, bond_high, bond_max
 from etf import etf
 from kzj import kzj
 from nstock import stock

@@ -3,6 +3,8 @@
 
 import os
 
+file = '/srv/www/pmoney/index.html'
+
 def read_user(user_seq):
 	f = open('user.txt')
 	d = f.readlines()
@@ -21,7 +23,7 @@ def read_user(user_seq):
 
 def email(confirm, title, user_email):
 	if confirm is True:
-		command = "mail -s '%s' %s < /srv/www/index.html" % (title, user_email)
+		command = "mail -s '%s' %s < %s" % (title, user_email, file)
 		#print command
 		os.system(command)
 		print "Email sent!"

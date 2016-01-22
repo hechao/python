@@ -15,12 +15,12 @@ def bond_raw(bond_url):
 	bond_value_list = []
 	for i in bond_value_rawlist:
 	    i = i.get('ytm')
-	    if i != "":
+	    '''if i != "":
 	        print "error read bond ytm as ' ', set it to -999"
 	        i = -999.00
 	        bond_value_list.append(i)
-	    else:
-	        bond_value_list.append(i)
+	    else:'''
+	    bond_value_list.append(i)
 	       
 	bond_value_list = bond_value_list[1::2]
 	#print bond_value_list
@@ -37,8 +37,10 @@ def bond_high(bond_raw, user_profit):
 # find the bond which has high profit, open log.html and write into it 
 	bond_high={}
 	for key in bond_raw:
-		if bond_raw[key] > float(user_profit):
-			bond_high[key] = bond_raw[key]
+	    #print bond_raw[key]
+	    if float(bond_raw[key]) > float(user_profit):
+	        print 'high bond value: ' + bond_raw[key]
+	        bond_high[key] = bond_raw[key]
 	return bond_high
 
 def bond_max(bond_high):
@@ -55,4 +57,5 @@ if __name__ == "__main__":
 
     bond_raw = bond_raw(bond_url)
     bond_high = bond_high(bond_raw, 9)
+    #print bond_high
     bond_max = bond_max(bond_high)
