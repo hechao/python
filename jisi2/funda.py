@@ -21,10 +21,15 @@ def funda_raw(funda_url):
 
     for cells in funda_list:
         funda_data = cells[u'cell']
+        
         funda_name = funda_data[u'funda_name'].decode('unicode_escape')
         funda_discount = float(funda_data[u'funda_discount_rt'][:-1])
         funda_profit = float(funda_data[u'funda_profit_rt_next'][:-1])
-        funda_base_profit = float(funda_data[u'funda_base_est_dis_rt'][:-1])
+        if funda_data[u'funda_base_est_dis_rt'] == '-':
+            print "error to read funda_base_est_dis_rt as -, set it to -999.00"
+            funda_base_profit = -999.00
+        else:
+            funda_base_profit = float(funda_data[u'funda_base_est_dis_rt'][:-1])
         funda_raw[funda_name] =[funda_discount, funda_profit, funda_base_profit]
     
     return funda_raw

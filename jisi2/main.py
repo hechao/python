@@ -18,7 +18,7 @@ import sys
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
-web_url = '/srv/www/index.html'
+web_url = '/srv/www/pmoney/index.html'
 f = open('template.html')
 fn = open(web_url, 'w')
 pgt = "今日PMONEY金融,订阅客户:hechao!"

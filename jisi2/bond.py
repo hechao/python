@@ -14,8 +14,14 @@ def bond_raw(bond_url):
 	bond_value_rawlist = soup.find_all("td", ytm=True)
 	bond_value_list = []
 	for i in bond_value_rawlist:
-	    i = float(i.get('ytm'))
-	    bond_value_list.append(i)
+	    i = i.get('ytm')
+	    if i != "":
+	        print "error read bond ytm as ' ', set it to -999"
+	        i = -999.00
+	        bond_value_list.append(i)
+	    else:
+	        bond_value_list.append(i)
+	       
 	bond_value_list = bond_value_list[1::2]
 	#print bond_value_list
 	for i in range(len(bond_name_list)):
