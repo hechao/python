@@ -3,27 +3,25 @@
 
 import os
 
-file = '/srv/www/pmoney/index.html'
-
-def read_user(user_seq):
-	f = open('user.txt')
-	d = f.readlines()
+def user(user_file, id):
+	f = open(user_file)
+	users_lines = f.readlines()
 	f.close()
-	mydict ={}
+	users_profile ={}
 
-	for usr in d:
-		usr_name = usr.split(':')[0]
-		usr_target = usr.split(':')[1]
-		usr_email = usr.split(':')[2].rstrip('\n')
-		#usr_email = usr.split(':')[3]
-		mydict[usr_name] = (usr_name, usr_target, usr_email)
-		#print mydict
+	for user_line in users_lines:
+		name = user_line.split(':')[0]
+		target = user_line.split(':')[1]
+		email = user_line.split(':')[2].rstrip('\n')
+		users_profile[name] = (name, target, email)
+	
+	for user in users_profile:
+	    if user == id:
+	        return users_profile[user]
 
-	return mydict
-
-def email(confirm, title, user_email):
+def email(confirm, title, user_email, url_index):
 	if confirm is True:
-		command = "mail -s '%s' %s < %s" % (title, user_email, file)
+		command = "mail -s '%s' %s < %s" % (title, user_email, url_index)
 		#print command
 		os.system(command)
 		print "Email sent!"
@@ -31,5 +29,10 @@ def email(confirm, title, user_email):
 		print "None find!"
 
     
-#if __name__ == "__main__":
+if __name__ == "__main__":
+    user_file = 'user.txt'
+    id = 'hechaosb'
+    user_profile = user(user_file, id)
+    print user_profile
+
 

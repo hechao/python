@@ -1,8 +1,6 @@
 #! /usr/bin/python
 #-*- encoding: utf-8 -*-
 
-
-    
 def replace_html(f, fn, replace_dict):
     
     old_lines = f.readlines()
@@ -25,7 +23,7 @@ def print_fj(fj, fj_url, web_url):
     
     fj_lines =[]
     fj_lines.append('* 程序自动抓取折价在15%以上的传统封基的信息.<br>')
-    fj_lines.append("<A HREF=\"fj_url\">'* 信息收集网址 <br><br>'</A>")
+    fj_lines.append("<A HREF=\"%s\">'* 信息收集网址 <br><br>'</A>" % fj_url)
     fj_str = ''
     
     for i in fj:
@@ -41,7 +39,7 @@ def print_bond(bond_high, bond_max, bond_url, web_url):
     
     bond_lines =[]
     bond_lines.append('* 程序自动抓取隐含收益在9%以上的债券信息.<br>')
-    bond_lines.append("<A HREF=\"bond_url\">'* 信息收集网址 <br><br>'</A>")
+    bond_lines.append("<A HREF=\"%s\">'* 信息收集网址 <br><br>'</A>" % bond_url)
     
     for i in bond_high:
         bond_high_line = '<strong>* %s 的收益率是 %s %% </strong><br>' %(str(i), str(bond_high[i]))
@@ -59,7 +57,7 @@ def print_etf(etf, etf_url, web_url):
     
     etf_lines =[]
     etf_lines.append('* 程序自动抓取PE在10以下的ETF信息.<br>')
-    etf_lines.append("<A HREF=\"etf_url\">'* 信息收集网址 <br><br>'</A>")
+    etf_lines.append("<A HREF=\"%s\">'* 信息收集网址 <br><br>'</A>" % etf_url)
 
     for i in etf:
         if etf[i][2] == '金融类':
@@ -93,7 +91,7 @@ def print_kzj(kzj, kzj_url, web_url):
     
     kzj_lines =[]
     kzj_lines.append('* 程序自动抓取价格在130以下的可转债的信息.<br>')
-    kzj_lines.append("<A HREF=\"kzj_url\">'* 信息收集网址 <br><br>'</A>")
+    kzj_lines.append("<A HREF=\"%s\">'* 信息收集网址 <br><br>'</A>" % kzj_url)
     
     for i in kzj:
         kzj_line = "* %s 的现价是 <em><strong>%s</strong></em> <br>\n" % (i, kzj[i])
@@ -109,7 +107,7 @@ def print_stock(stock, stock_url, web_url):
     
     stock_lines =[]
     stock_lines.append('* 程序自动抓取"强烈推荐的"打新股的信息.<br>')
-    stock_lines.append("<A HREF=\"stock_url\">'* 信息收集网址 <br><br>'</A>")
+    stock_lines.append("<A HREF=\"%s\">'* 信息收集网址 <br><br>'</A>" % stock_url)
     
     for i in stock:
         stock_line = "* %s 的购买评价是 <em><strong>%s</strong></em>,申购日期是 %s-%s. <br>\n" % (i, stock[i][0], stock[i][1], stock[i][2])
@@ -123,7 +121,7 @@ def print_indice(indice_raw, indice_filter, indice_url, web_url):
     
     indice_lines =[]
     indice_lines.append('* 程序目前手机52K排位信息,越低表明指数在近一年内的水准.<br>')
-    indice_lines.append("<A HREF=\"indice_url\">'* 信息收集网址 <br><br>'</A>")
+    indice_lines.append("<A HREF=\"%s\">'* 信息收集网址 <br><br>'</A>" % indice_url)
 
     
     for i in indice_raw:
@@ -145,7 +143,7 @@ def print_funda(funda, funda_url, web_url):
     
     funda_lines =[]
     funda_lines.append('* 提取折价率在10以下，隐含收益在5以上，母鸡溢价率在0一下的分级A.<br>')
-    funda_lines.append("<A HREF=\"funda_url\">'* 信息收集网址 <br><br>'</A>")
+    funda_lines.append("<A HREF=\"%s\">'* 信息收集网址 <br><br>'</A>" % funda_url)
     
     
     for i in funda:
@@ -169,7 +167,7 @@ def print_index(index_value, index_url, web_url):
     return index_str
     
 if __name__ == "__main__":
-    index = '/srv/www/index2.html'
+    index = '/srv/www/pmoney/index.html'
     f = open('template.html')
     fn = open(index, 'w')
     
