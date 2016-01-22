@@ -3,7 +3,7 @@
 
 from fengji import fj
 from data_bond import bond_raw, bond_high, bond_max
-from etf import etf
+from data_etf import etf
 from kzj import kzj
 from nstock import stock
 from world_indice import indice, indice_filter
