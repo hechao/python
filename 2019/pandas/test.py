@@ -18,10 +18,17 @@ def color_negative_red(val):
     color = 'red' if val < 0 else 'black'
     return 'color: %s' % color
 	
-df2 = df.style.applymap(color_negative_red)
+df2 = df.style.applymap(color_negative_red).render()
 
 #df.style.applymap(highlight_cols, subset=pd.IndexSlice[:, ['B', 'C']])
-df2.to_html('index.html')
+
+f= open("/var/www/html/portf/templates/test.html","w")
+f.write(df2)
+f.close()
+
+#print (df2)
+
+#df2.to_html('index.html')
 
 
 
